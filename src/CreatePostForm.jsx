@@ -33,13 +33,12 @@ function CreatePostForm({ thread_id, fetchPosts }) {
 
   return (
     <div className="post-form">
-      <h3>新しい投稿を追加</h3>
       <textarea
         value={newPost}
         onChange={(e) => setNewPost(e.target.value)}
-        placeholder="投稿内容を入力してください"
+        placeholder="What is happening?!"
       />
-      <button onClick={handlePostSubmit}>投稿する</button>
+      <button onClick={handlePostSubmit} className="button">Post</button>
     </div>
   );
 }

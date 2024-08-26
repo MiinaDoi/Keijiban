@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ThreadList from './ThreadList';
 import CreateThread from './CreateThread';
 import PostList from './PostList';
+import Header from './Header'; // Import the Header component
 import './App.css';
 
 const URL = 'https://railway.bulletinboard.techtrain.dev/threads?offset=1';
@@ -25,10 +26,7 @@ function App() {
 
   return (
     <Router>
-      <div className="header-container">
-        <h1>掲示板</h1>
-        <Link to="/threads/new" className="create-thread-link">スレッドをたてる</Link>
-      </div>
+      <Header />
       <Routes>
         <Route path="/" element={<ThreadList threads={threads} />} />
         <Route path="/threads/new" element={<CreateThread setThreads={setThreads} />} />

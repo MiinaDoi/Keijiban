@@ -22,18 +22,17 @@ function PostList() {
   };
 
   return (
-    <div className="container">
-      <CreatePostForm thread_id={thread_id} fetchPosts={fetchPosts} /> {/* Post form at the top */}
-      <h2>スレッドの投稿一覧</h2>
+    <div className="post-container">
+      <CreatePostForm thread_id={thread_id} fetchPosts={fetchPosts} />
       <ul>
         {posts.length > 0 ? (
           posts.map((post) => (
-            <li key={post.id}>
-              <p>{post.post}</p> {/* Display the 'post' content */}
+            <li key={post.id} className="thread-item">
+              <p>{post.post}</p> 
             </li>
           ))
         ) : (
-          <p>投稿がありません。</p>
+          <p>There is no post.</p>
         )}
       </ul>
     </div>

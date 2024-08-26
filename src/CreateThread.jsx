@@ -35,16 +35,23 @@ function CreateThread({ setThreads }) {
     }
   };
 
+  // Navigate back to the previous page
+  const handleBackClick = () => {
+    navigate('/');
+  };
+
   return (
-    <div className="container">
-      <h2>スレッドをたてる</h2>
+    <div className="create-thread-container">
+      <h2>
+        <span onClick={handleBackClick} style={{ cursor: 'pointer' }}>←</span> Create Thread
+      </h2>
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="スレッドのタイトル"
+        placeholder="Name the thread here!!"
       />
-      <button onClick={handleCreateThread}>作成</button>
+      <button onClick={handleCreateThread} className="button">Create</button>
     </div>
   );
 }

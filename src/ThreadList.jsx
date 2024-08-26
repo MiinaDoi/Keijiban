@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 function ThreadList({ threads }) {
   return (
     <div className="container">
-      <h2>新着スレッド</h2>
       <ul>
         {threads.map((thread) => (
-          <li key={thread.id}>
+          <li key={thread.id} className="thread-item">
             <Link to={`/threads/${thread.id}`}>{thread.title}</Link>
           </li>
         ))}
