@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CreatePostForm({ thread_id, fetchPosts }) {
+function CreatePostForm({ thread_id, handleNewPost }) {
   const [newPost, setNewPost] = useState('');
 
   const handlePostSubmit = async () => {
@@ -20,8 +20,9 @@ function CreatePostForm({ thread_id, fetchPosts }) {
       });
 
       if (response.ok) {
+        const newPostData = await response.json();
         setNewPost(''); // Clear the input field
-        fetchPosts(); // Re-fetch posts from the server after submission
+        handleNewPost(newPostData); // Immediately add the new post to the list in PostList
       } else {
         alert('投稿に失敗しました');
       }

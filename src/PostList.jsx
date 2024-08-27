@@ -21,9 +21,13 @@ function PostList() {
     }
   };
 
+  const handleNewPost = (newPostData) => {
+    setPosts((prevPosts) => [newPostData, ...prevPosts]);
+  };
+
   return (
     <div className="post-container">
-      <CreatePostForm thread_id={thread_id} fetchPosts={fetchPosts} />
+      <CreatePostForm thread_id={thread_id} handleNewPost={handleNewPost} />
       <ul>
         {posts.length > 0 ? (
           posts.map((post) => (

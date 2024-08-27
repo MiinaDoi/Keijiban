@@ -6,15 +6,13 @@ import PostList from './PostList';
 import Header from './Header'; // Import the Header component
 import './App.css';
 
-const URL = 'https://railway.bulletinboard.techtrain.dev/threads?offset=1';
-
 function App() {
   const [threads, setThreads] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(URL);
+        const result = await fetch('https://railway.bulletinboard.techtrain.dev/threads?offset=1');
         const data = await result.json();
         setThreads(data);
       } catch (error) {

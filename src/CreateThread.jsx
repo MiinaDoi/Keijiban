@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CREATE_THREAD_URL = 'https://railway.bulletinboard.techtrain.dev/threads';
-
 function CreateThread({ setThreads }) {
   const [title, setTitle] = useState('');
   const navigate = useNavigate();
@@ -14,7 +12,7 @@ function CreateThread({ setThreads }) {
     }
 
     try {
-      const response = await fetch(CREATE_THREAD_URL, {
+      const response = await fetch('https://railway.bulletinboard.techtrain.dev/threads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
