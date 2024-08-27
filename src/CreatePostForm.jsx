@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CreatePostForm({ thread_id, handleNewPost }) {
+function CreatePostForm({ thread_id, fetchPosts }) {
   const [newPost, setNewPost] = useState('');
 
   const handlePostSubmit = async () => {
@@ -8,7 +8,7 @@ function CreatePostForm({ thread_id, handleNewPost }) {
       alert('投稿内容を入力してください');
       return;
     }
-
+  
     const POST_URL = `https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts`;
     try {
       const response = await fetch(POST_URL, {
@@ -18,11 +18,10 @@ function CreatePostForm({ thread_id, handleNewPost }) {
         },
         body: JSON.stringify({ post: newPost }), // Sending the post content to the server
       });
-
+  
       if (response.ok) {
-        const newPostData = await response.json();
-        setNewPost(''); // Clear the input field
-        handleNewPost(newPostData); // Immediately add the new post to the list in PostList
+        await fetchPosts(); // Re-fetch posts from the server after submission and wait for it to complete**
+        setNewPost(''); // Clear the input field after the posts are updated
       } else {
         alert('投稿に失敗しました');
       }
@@ -30,7 +29,7 @@ function CreatePostForm({ thread_id, handleNewPost }) {
       console.error('Error submitting post:', error);
       alert('エラーが発生しました。再度お試しください。');
     }
-  };
+  };  
 
   return (
     <div className="post-form">

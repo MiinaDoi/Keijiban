@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('https://railway.bulletinboard.techtrain.dev/threads?offset=1');
+        const result = await fetch('https://railway.bulletinboard.techtrain.dev/threads?offset=0'); // getting data from 0
         const data = await result.json();
         setThreads(data);
       } catch (error) {

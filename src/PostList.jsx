@@ -11,7 +11,7 @@ function PostList() {
   }, [thread_id]);
 
   const fetchPosts = async () => {
-    const API_URL = `https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts?offset=1`;
+    const API_URL = `https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts?offset=0`;
     try {
       const result = await fetch(API_URL);
       const data = await result.json();
@@ -21,13 +21,9 @@ function PostList() {
     }
   };
 
-  const handleNewPost = (newPostData) => {
-    setPosts((prevPosts) => [newPostData, ...prevPosts]);
-  };
-
   return (
     <div className="post-container">
-      <CreatePostForm thread_id={thread_id} handleNewPost={handleNewPost} />
+      <CreatePostForm thread_id={thread_id} fetchPosts={fetchPosts} />
       <ul>
         {posts.length > 0 ? (
           posts.map((post) => (

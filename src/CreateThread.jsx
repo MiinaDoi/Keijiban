@@ -22,7 +22,7 @@ function CreateThread({ setThreads }) {
 
       if (response.ok) {
         const newThread = await response.json();
-        setThreads(prevThreads => [...prevThreads, newThread]);
+        setThreads(prevThreads => [newThread, ...prevThreads]); // prevData+newData(not refetching)**
         navigate('/'); // Navigate back to the thread list
       } else {
         alert('スレッドの作成に失敗しました');
